@@ -20,7 +20,3 @@ router.post('/', [
 
 })
 module.exports = router;
-   // console.log(req.body)
-    // const user = User(req.body)
-    // user.save()
-    // res.send(req.body)
