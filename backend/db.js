@@ -1,5 +1,4 @@
-const { default: mongoose } = require('mongoose');
-const mongoos = require('mongoose');
+const mongoose = require('mongoose');
 const mongoURI = 'mongodb://localhost:27017/notebook'
 
 const connectmongo = ()=>{
