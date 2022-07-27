@@ -16,9 +16,6 @@ function Addnote() {
     const onchange = (e) => {
         setNote({ ...note, [e.target.name]: e.target.value })
     }
-    // const blank=()=>{
-    //     setNote({ title: "", description: "", tag: "" })
-    // }
     return (
         <div>
             <div className='container my-4'>

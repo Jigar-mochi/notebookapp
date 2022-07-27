@@ -1,42 +1,58 @@
 import React from 'react'
-import Notecontext from '../context/notes/Notecontext'
-import { useContext } from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
-    const context = useContext(Notecontext)
-    const [note, setNote] = useState({ title: "", description: "", tag: "" })
-    const { addnote } = context
+    const [user, setUser] = useState({ name: "", email: "", password: "" })
+    const navigate = useNavigate();
+
 
     const onchange = (e) => {
-        setNote({ ...note, [e.target.name]: e.target.value })
+        setUser({ ...user, [e.target.name]: e.target.value })
+        // setUser({ ...user, [e.target.name]: e.target.value })
     }
 
-    const handleclick = (e) => {
+    const handleclick = async (e) => {
         e.preventDefault()
-        addnote(note)
-        setNote({ title: "", description: "", tag: "" })
+        const response = await fetch("http://localhost:800/api/auth/creatuser", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: user.name, email: user.email, password: user.password })
+        });
+        const json = await response.json()
+        if (json.success) {
+            // Save the auth token and redirect
+            // localStorage.setItem('token', json.authtoken);
+            navigate("/succ");
+
+        }
+        else {
+            alert("Please fill in valid formate");
+        }
     }
     return (
         <div className='container col-md-3 my-5'>
-            <form>
+            <form onSubmit={handleclick}>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
-                    <input type="text" onChange={onchange} className="form-control" id="name" aria-describedby="emailHelp" required/>
+                    <input type="text" className="form-control" id="name" aria-describedby="emailHelp" onChange={onchange} minLength={5} name='name' value={user.name} required />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" onChange={onchange} className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required/>
+                    <input type="email" className="form-control" id="email" aria-describedby="emailHelp" onChange={onchange} minLength={5} name='email' value={user.email} required />
                     <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" onChange={onchange} className="form-control" id="exampleInputPassword1" required/>
+                    <input type="password" className="form-control" id="password" onChange={onchange} minLength={5} name='password' value={user.password} required />
                 </div>
                 <div className="mb-3 form-check">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck1" required/>
-                    <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
+                    <input type="checkbox" className="form-check-input" id="checkbox" required />
+                    <label className="form-check-label" htmlFor="checkbox">Check me out</label>
                 </div>
-                <button disabled={note.title.length < 5 || note.description.length < 5} onClick={handleclick} type="submit" className="btn btn-primary">signup</button>
+                <button disabled={user.name.length < 5 || user.email.length < 5} type="submit" className="btn btn-primary">signup</button>
             </form>
         </div>
     )
