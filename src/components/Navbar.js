@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom'
 function Navbar() {
     let location  = useLocation()
     useEffect(() => {
-        console.log(location.pathname)
+        // console.log(location.pathname)
         // eslint-disable-next-line
     }, [location]);
     return (
@@ -26,6 +26,10 @@ function Navbar() {
                             </li>
                         </ul>
                     </div>
+                    <Link to="/login" className="btn btn-info mx-3">Login</Link>
+                    <Link to="/Signup" className="btn btn-info">Signup</Link>
+                    {/* <button type="button" className="btn btn-info mx-3">Login</button>
+                    <button type="button" className="btn btn-info">Signup</button> */}
                 </div>
             </nav>
         </div>
