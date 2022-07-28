@@ -19,6 +19,7 @@ function Addnote() {
     return (
         <div>
             <div className='container my-4'>
+                <h3>Welcome to notebook add your note here</h3>
                 <form >
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label">Title</label>
