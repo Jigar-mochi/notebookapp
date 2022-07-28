@@ -3,8 +3,10 @@ import Noteitem from './Noteitem'
 import Notecontext from '../context/notes/Notecontext'
 import { useContext, useEffect, useRef, useState } from 'react'
 import Addnote from './Addnote'
+import { useNavigate } from 'react-router-dom';
 
 function Notes() {
+    const navigate = useNavigate();
     const context = useContext(Notecontext)
     const { state, getNotes, editNote } = context
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
@@ -21,14 +23,19 @@ function Notes() {
 
     const editnote = (e) => {
         e.preventDefault()
-        console.log("updating the note",note)
-        editNote(note.id,note.etitle,note.edescription,note.tag)
+        console.log("updating the note", note)
+        editNote(note.id, note.etitle, note.edescription, note.tag)
         refclose.current.click()
     }
 
 
     useEffect(() => {
-        getNotes()
+        if (localStorage.getItem('token')) {
+            getNotes()
+        }
+        else {
+            navigate('/login')
+        }
         // eslint-disable-next-line
     }, [])
 
@@ -49,21 +56,21 @@ function Notes() {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="title" className="form-label">Title</label>
-                                    <input type="text" onChange={onchange} className="form-control" value={note.etitle} name='etitle' id="etitle" aria-describedby="emailHelp" minLength={5} required/>
+                                    <input type="text" onChange={onchange} className="form-control" value={note.etitle} name='etitle' id="etitle" aria-describedby="emailHelp" minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="description" className="form-label">Description</label>
-                                    <input type="text" onChange={onchange} className="form-control" value={note.edescription} name='edescription' id="edescription" minLength={5} required/>
+                                    <input type="text" onChange={onchange} className="form-control" value={note.edescription} name='edescription' id="edescription" minLength={5} required />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="tag" className="form-label">Tag</label>
-                                    <input className="form-control" onChange={onchange} type="text" id='etag' value={note.etag} name='etag' aria-label="default input example" minLength={5} required/>
+                                    <input className="form-control" onChange={onchange} type="text" id='etag' value={note.etag} name='etag' aria-label="default input example" minLength={5} required />
                                 </div>
                             </form>
                         </div>
                         <div className="modal-footer">
                             <button ref={refclose} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length<5 || note.edescription.length<5} type="button" onClick={editnote} className="btn btn-primary">Save changes</button>
+                            <button disabled={note.etitle.length < 5 || note.edescription.length < 5} type="button" onClick={editnote} className="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>

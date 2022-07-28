@@ -1,12 +1,21 @@
 import { React, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 
 function Navbar() {
-    let location  = useLocation()
+    let location = useLocation()
     useEffect(() => {
         // console.log(location.pathname)
         // eslint-disable-next-line
     }, [location]);
+    const navigate = useNavigate();
+    const logout = () => {
+        localStorage.removeItem('token')
+
+        navigate('/login')
+    }
+
     return (
 
         <div>
@@ -19,17 +28,16 @@ function Navbar() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname==="/"?"active":""}`} aria-current="page" to="/">Home</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">About</Link>
+                                <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/">Home</Link>
                             </li>
                         </ul>
                     </div>
-                    <Link to="/login" className="btn btn-info mx-3">Login</Link>
-                    <Link to="/Signup" className="btn btn-info">Signup</Link>
-                    {/* <button type="button" className="btn btn-info mx-3">Login</button>
-                    <button type="button" className="btn btn-info">Signup</button> */}
+
+                    {!localStorage.getItem('token') ? <form className="d-flex">
+                        <Link to="/login" className="btn btn-info mx-3">Login</Link>
+                        <Link to="/Signup" className="btn btn-info">Signup</Link>
+                    </form> : <button type="button" onClick={logout} className="btn btn-info">Logout</button>
+                    }
                 </div>
             </nav>
         </div>
