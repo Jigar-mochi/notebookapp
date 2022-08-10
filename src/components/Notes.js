@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 function Notes() {
     const navigate = useNavigate();
     const context = useContext(Notecontext)
+    console.log(context)
     const { state, getNotes, editNote } = context
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
     const ref = useRef(null)

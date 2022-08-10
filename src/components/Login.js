@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import './login.css'
 
 
 
@@ -34,19 +35,22 @@ function Login() {
         setCred({ ...cred, [e.target.name]: e.target.value })
     }
     return (
-        <div className='container col-md-3 my-5'>
-            <form onSubmit={handleclick}>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" onChange={change} id="email" name='email' value={cred.email} aria-describedby="emailHelp" />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                    <input type="password" className="form-control" onChange={change} value={cred.password} name='password' id="password" />
-                </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
+        <div className='box pt'>
+            <div className='bgn container col-md-3'>
+                <form onSubmit={handleclick}>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputEmail1" className="form-label pt-4">Email address</label>
+                        <input type="email" className="form-control" onChange={change} id="email" name='email' value={cred.email} aria-describedby="emailHelp" />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
+                        <input type="password" className="form-control" onChange={change} value={cred.password} name='password' id="password" />
+                    </div>
+                    <button type="submit" className="btn btn-primary">Submit</button>
+                </form>
+            </div>
         </div>
+
     )
 }
 

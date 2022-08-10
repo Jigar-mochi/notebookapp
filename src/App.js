@@ -10,6 +10,7 @@ import Notestate from './context/notes/Notestate';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Succ from './components/Succ';
+import Textedit from './components/Textedit';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route index element={<Home />} />
+          <Route path="textedit" element={<Textedit heading="Edit your text here" />} />
           <Route path="signup" element={<Signup />} />
           <Route path="login" element={<Login />} />
           <Route path="succ" element={<Succ />} />

@@ -1,0 +1,20 @@
+.bgn {
+  background-color: rgb(98, 185, 216);
+  color: white;
+  height: 40vh;
+  border-radius: 1rem;
+  box-shadow: 1rem 1rem 1rem red;
+}
+.bgn::before {
+  content: "";
+  background: url(./image/bg2.jpg) no-repeat center center/cover;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+}
+.pt {
+  padding-top: 10rem;
+}
