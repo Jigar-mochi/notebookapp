@@ -1,15 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-import './login.css'
-
-
+import './style.css'
 
 function Login() {
     const [cred, setCred] = useState({ email: "", password: "" })
     const navigate = useNavigate();
-
-
 
     const handleclick = async (e) => {
         e.preventDefault()
@@ -31,9 +26,11 @@ function Login() {
             alert("Invalid credentials");
         }
     }
+
     const change = (e) => {
         setCred({ ...cred, [e.target.name]: e.target.value })
     }
+
     return (
         <div className='box pt'>
             <div className='bgn container col-md-3'>
@@ -50,7 +47,6 @@ function Login() {
                 </form>
             </div>
         </div>
-
     )
 }
 

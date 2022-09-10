@@ -1,15 +1,13 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import './style.css'
 
 function Signup() {
     const [user, setUser] = useState({ name: "", email: "", password: "" })
     const navigate = useNavigate();
 
-
     const onchange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
-        // setUser({ ...user, [e.target.name]: e.target.value })
     }
 
     const handleclick = async (e) => {
@@ -24,17 +22,17 @@ function Signup() {
         const json = await response.json()
         if (json.success) {
             // Save the auth token and redirect
-            // localStorage.setItem('token', json.authtoken);
+            localStorage.setItem('token', json.authtoken);
             navigate("/succ");
-
         }
         else {
             alert("Please fill in valid formate");
         }
     }
     return (
-        <div className='container col-md-3 my-5'>
-            <form onSubmit={handleclick}>
+        <div className='app'>
+            <form className='form-container' onSubmit={handleclick}>
+                <h1 className='mb-3'>Signup here</h1>
                 <div className="mb-3">
                     <label htmlFor="name" className="form-label">Name</label>
                     <input type="text" className="form-control" id="name" aria-describedby="emailHelp" onChange={onchange} minLength={5} name='name' value={user.name} required />

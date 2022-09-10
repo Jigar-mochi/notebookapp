@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Succ() {
+function RegisterSuccess() {
     return (
         <div className='container d-flex flex-column justify-content-center my-5'>
             <h1>Wohoo! you have successfully made your account</h1>
@@ -9,4 +9,4 @@ function Succ() {
     )
 }
 
-export default Succ
+export default RegisterSuccess

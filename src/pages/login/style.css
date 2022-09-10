@@ -1,13 +1,13 @@
 .bgn {
-  background-color: rgb(98, 185, 216);
+  background-color: rgb(39 54 59);
   color: white;
   height: 40vh;
   border-radius: 1rem;
-  box-shadow: 1rem 1rem 1rem red;
+  box-shadow: 0.5rem 0.5rem 2rem rgb(150, 149, 149);
 }
 .bgn::before {
   content: "";
-  background: url(./image/bg2.jpg) no-repeat center center/cover;
+  background: url(../../asets/image/bg2.jpg) no-repeat center center/cover;
   position: absolute;
   top: 0px;
   left: 0px;

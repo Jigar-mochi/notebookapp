@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 
-
 export default function Textedit(props) {
     const [text, setText] = useState("")
 
@@ -10,6 +9,7 @@ export default function Textedit(props) {
         setText(newtext);
         props.showalert("Converted to upper case", "success")
     }
+
     const handlelow = () => {
         console.log("you have clicked button");
         let newtext = text.toLowerCase();
@@ -26,27 +26,32 @@ export default function Textedit(props) {
         setText(newText.join(" "));
         props.showalert("Converted to Title case", "success")
     }
+
     const copyText = () => {
         let text = document.getElementById("mytextbox");
         text.select();
         navigator.clipboard.writeText(text.value)
         props.showalert("text copied", "success")
     }
+
     const clear = () => {
         setText("");
         props.showalert("all cleared", "success")
 
     }
+
     const spacehandle = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
         props.showalert("spaces are handled", "success")
     }
+
     const handelonchange = (event) => {
         console.log("text started to change");
         setText(event.target.value);
         console.log(text)
     }
+
     return (
         <>
             <div className="container text-dark my-5">
@@ -61,7 +66,6 @@ export default function Textedit(props) {
                     <button type="button" onClick={clear} className="btn my-2 mx-2 btn-warning">clear</button>
                     <button type="button" onClick={copyText} className="btn my-2 mx-2 btn-warning">copyText</button>
                     <button type="button" onClick={spacehandle} className="btn my-2 mx-2 btn-warning">spacehandle</button>
-
                 </div>
                 <div className="container">
                     <h2>your text summary</h2>
@@ -76,7 +80,6 @@ export default function Textedit(props) {
                     <p>{text}</p>
                 </div>
             </div>
-
         </>
     )
 }

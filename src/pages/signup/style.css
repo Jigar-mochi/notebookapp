@@ -1,0 +1,15 @@
+.app {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(186, 180, 255);
+}
+
+.form-container {
+  width: 25rem;
+  height: 30rem;
+  padding: 2rem;
+  background-color: rgb(205, 151, 255);
+  border-radius: 1rem;
+}

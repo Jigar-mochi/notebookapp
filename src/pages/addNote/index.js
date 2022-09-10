@@ -1,13 +1,11 @@
-import React from 'react'
-import Notecontext from '../context/notes/Notecontext'
-import { useContext } from 'react'
-import { useState } from 'react'
-
+import React, { useContext, useState } from 'react'
+import Notecontext from '../../context/notes/Notecontext'
 
 function Addnote() {
     const context = useContext(Notecontext)
     const { addnote } = context
     const [note, setNote] = useState({ title: "", description: "", tag: "" })
+
     const handleclick = (e) => {
         e.preventDefault()
         addnote(note)

@@ -1,34 +1,16 @@
-import React from 'react'
-import Noteitem from './Noteitem'
-import Notecontext from '../context/notes/Notecontext'
-import { useContext, useEffect, useRef, useState } from 'react'
-import Addnote from './Addnote'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import Notecontext from '../../context/notes/Notecontext'
+import Noteitem from '../noteItem'
+import Addnote from '../../pages/addNote'
 
 function Notes() {
     const navigate = useNavigate();
     const context = useContext(Notecontext)
-    console.log(context)
     const { state, getNotes, editNote } = context
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" })
     const ref = useRef(null)
     const refclose = useRef(null)
-
-    const updatenote = (currentNote) => {
-        ref.current.click()
-        setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
-    }
-    const onchange = (e) => {
-        setNote({ ...note, [e.target.name]: e.target.value })
-    }
-
-    const editnote = (e) => {
-        e.preventDefault()
-        console.log("updating the note", note)
-        editNote(note.id, note.etitle, note.edescription, note.tag)
-        refclose.current.click()
-    }
-
 
     useEffect(() => {
         if (localStorage.getItem('token')) {
@@ -39,6 +21,22 @@ function Notes() {
         }
         // eslint-disable-next-line
     }, [])
+
+    const updatenote = (currentNote) => {
+        ref.current.click()
+        setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag })
+    }
+
+    const onchange = (e) => {
+        setNote({ ...note, [e.target.name]: e.target.value })
+    }
+
+    const editnote = (e) => {
+        e.preventDefault()
+        console.log("updating the note", note)
+        editNote(note.id, note.etitle, note.edescription, note.tag)
+        refclose.current.click()
+    }
 
     return (
         <div className="container">
@@ -89,8 +87,6 @@ function Notes() {
                 </div>
             </div>
         </div>
-
-
     )
 }
 
